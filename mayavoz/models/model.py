@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 import numpy as np
 import pytorch_lightning as pl
 import torch
-from huggingface_hub import cached_download, hf_hub_url
+from huggingface_hub import hf_hub_download, hf_hub_url
 from lightning_fabric.utilities.cloud_io import _load as pl_load
 from torch import nn
 from torch.optim import Adam
@@ -316,7 +316,7 @@ class Mayamodel(pl.LightningModule):
             url = hf_hub_url(
                 model_id, filename=HF_TORCH_WEIGHTS, revision=revision_id
             )
-            model_path_pl = cached_download(
+            model_path_pl = hf_hub_download(
                 url=url,
                 library_name="mayavoz",
                 library_version=__version__,
